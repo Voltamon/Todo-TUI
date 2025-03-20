@@ -86,7 +86,7 @@ int main(int argc, char** argv) {
     char input;
     int id;
     sqlite3 *DB;
-    enum Result status;
+    Result status;
 
     DB = init_db();
     if (!DB) {
