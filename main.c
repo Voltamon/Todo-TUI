@@ -22,32 +22,13 @@ sqlite3* init_db(void) {
 }
 
 void init_table(sqlite3 *DB) {
-    FILE *file;
     char *query, *errorMessage;
 
-    file = fopen("init.sql", "r");
-    if (!file) {
-        fprintf(stderr, "failed to open init.sql\n");
-        fflush(stderr);
-
-        return;
-    }
-
-    fseek(file, 0, SEEK_END);
-    long query_size = ftell(file);
-    rewind(file);
-
-    query = malloc(query_size + 1);
-    if (!query) {
-        fprintf(stderr, "Failed to allocate memory\n");
-        fflush(stderr);
-
-        return;
-    }
-
-    fread(query, 1, query_size, file);
-    query[query_size] = '\0';
-    fclose(file);
+    query =
+        "CREATE TABLE IF NOT EXISTS TODO ("
+        "ID INTEGER PRIMARY KEY,"
+        "TASK VARCHAR(25) NOT NULL,"
+        "STATUS INT NOT NULL);";
 
     int exit_code = sqlite3_exec(DB, query, NULL, 0, &errorMessage);
     if (exit_code != SQLITE_OK) {
@@ -56,7 +37,6 @@ void init_table(sqlite3 *DB) {
 
     }
 
-    free(query);
     sqlite3_free(errorMessage);
     return;
 }
