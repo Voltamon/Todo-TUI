@@ -6,14 +6,14 @@
 typedef enum Result {
     OK,
     ERR
-};
+} Result;
 
-enum Result addTodo(sqlite3* DB, char task[]);
-enum Result listTodo(sqlite3* DB);
-enum Result markTodo(sqlite3* DB, int id);
-enum Result removeTodo(sqlite3* DB, int id);
+Result addTodo(sqlite3* DB, char task[]);
+Result listTodo(sqlite3* DB);
+Result markTodo(sqlite3* DB, int id);
+Result removeTodo(sqlite3* DB, int id);
 
-enum Result addTodo(sqlite3* DB, char task[]) {
+Result addTodo(sqlite3* DB, char task[]) {
     char *query, *errorMessage;
     int exit_code;
 
@@ -47,7 +47,7 @@ enum Result addTodo(sqlite3* DB, char task[]) {
     return OK;
 }
 
-enum Result listTodo(sqlite3* DB) {
+Result listTodo(sqlite3* DB) {
     char query[50];
     sqlite3_stmt *stmt;
     int exit_code;
@@ -87,7 +87,7 @@ enum Result listTodo(sqlite3* DB) {
     return OK;
 }
 
-enum Result markTodo(sqlite3* DB, int id) {
+Result markTodo(sqlite3* DB, int id) {
     char query[70], *errorMessage;
     sqlite3_stmt *stmt;
     int exit_code, status;
@@ -132,7 +132,7 @@ enum Result markTodo(sqlite3* DB, int id) {
     sqlite3_finalize(stmt);
     return OK;
 }
-enum Result removeTodo(sqlite3* DB, int id) {
+Result removeTodo(sqlite3* DB, int id) {
     char query[70], *errorMessage;
     sqlite3_stmt *stmt;
     int exit_code;
