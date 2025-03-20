@@ -7,7 +7,7 @@ I wrote this using 'sqlite3.h' in C. Its a todo app, works in the terminal
 ## Getting Started
 - Clone this repository
   ```
-  git clone https://github.com/Voltamon/Dotriminoes.git
+  git clone https://github.com/Voltamon/Todo-TUI.git
   ```
 - Run code-runner.ps1 (if you are on Windows)
   ```
